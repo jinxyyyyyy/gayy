@@ -89,6 +89,7 @@ h1 {
 .join-btn:hover {
     transform: scale(1.08);
 }
+
 .tiktok-btn {
     display: inline-block;
     margin-top: 20px;
@@ -114,7 +115,7 @@ footer {
     font-size: 0.85rem;
 }
 
-/* Discord Cards Styles */
+/* ===== Discord Cards ===== */
 .staff-cards {
     display: flex;
     justify-content: center;
@@ -127,6 +128,8 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-decoration: none; /* remove underline */
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .discord-card img {
@@ -134,17 +137,19 @@ footer {
     width: 100%;
     border-radius: 15px;
     box-shadow: 0 0 25px rgba(255, 0, 0, 0.45);
-    transition: transform 0.2s;
-}
-
-.discord-card img:hover {
-    transform: scale(1.05);
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .discord-card p {
     margin-top: 8px;
     color: #ff4b4b;
     font-weight: bold;
+    text-align: center;
+}
+
+.discord-card:hover img {
+    transform: scale(1.05);
+    box-shadow: 0 0 35px rgba(255, 0, 0, 0.65);
 }
 </style>
 </head>
@@ -186,28 +191,28 @@ footer {
 
 <div class="staff-cards">
     <!-- Strax -->
-    <div class="discord-card">
+    <a href="https://discord.com/users/925339379751329852" target="_blank" class="discord-card">
         <img src="https://lanyard.cnrad.dev/api/925339379751329852?bg=0b0b0b&borderRadius=15px&animated=true" alt="Strax Discord Profile">
         <p>Strax</p>
-    </div>
+    </a>
 
     <!-- Leo -->
-    <div class="discord-card">
+    <a href="https://discord.com/users/1327983625144238092" target="_blank" class="discord-card">
         <img src="https://lanyard.cnrad.dev/api/1327983625144238092?bg=0b0b0b&borderRadius=15px&animated=true" alt="Leo Discord Profile">
         <p>Leo</p>
-    </div>
+    </a>
 
     <!-- Pepe -->
-    <div class="discord-card">
+    <a href="https://discord.com/users/1137672913198260234" target="_blank" class="discord-card">
         <img src="https://lanyard.cnrad.dev/api/1137672913198260234?bg=0b0b0b&borderRadius=15px&animated=true" alt="Pepe Discord Profile">
         <p>Pepe</p>
-    </div>
+    </a>
 
     <!-- Koko -->
-    <div class="discord-card">
+    <a href="https://discord.com/users/1114657059913343117" target="_blank" class="discord-card">
         <img src="https://lanyard.cnrad.dev/api/1114657059913343117?bg=0b0b0b&borderRadius=15px&animated=true" alt="Koko Discord Profile">
         <p>Koko</p>
-    </div>
+    </a>
 </div>
 
 <p style="margin-top:5px;">
