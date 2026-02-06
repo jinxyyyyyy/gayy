@@ -121,35 +121,40 @@ footer {
     justify-content: center;
     flex-wrap: wrap;
     gap: 25px;
-    margin-top: 25px;
+    margin-top: 30px;
 }
 
 .discord-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-decoration: none; /* remove underline */
-    transition: transform 0.2s, box-shadow 0.2s;
+    opacity: 0;
+    animation: fadeIn 0.8s ease forwards;
 }
 
 .discord-card img {
     max-width: 320px;
     width: 100%;
     border-radius: 15px;
-    box-shadow: 0 0 25px rgba(255, 0, 0, 0.45);
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: transform 0.2s, box-shadow 0.3s;
 }
 
-.discord-card p {
-    margin-top: 8px;
-    color: #ff4b4b;
-    font-weight: bold;
-    text-align: center;
+/* Fade In Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Glow only when online */
+.online img {
+    box-shadow: 0 0 35px rgba(255, 0, 0, 0.75);
 }
 
 .discord-card:hover img {
     transform: scale(1.05);
-    box-shadow: 0 0 35px rgba(255, 0, 0, 0.65);
 }
 </style>
 </head>
@@ -186,38 +191,24 @@ footer {
     </div>
 </div>
 
-<!-- Discord Profile Cards for Staff -->
-<h2 style="margin-top:40px;">💬 Staff Discord Profiles</h2>
-
+<!-- Discord Cards -->
 <div class="staff-cards">
-    <!-- Strax -->
-    <a href="https://discord.com/users/925339379751329852" target="_blank" class="discord-card">
-        <img src="https://lanyard.cnrad.dev/api/925339379751329852?bg=0b0b0b&borderRadius=15px&animated=true" alt="Strax Discord Profile">
-        <p>Strax</p>
+    <a href="https://discord.com/users/925339379751329852" target="_blank" class="discord-card" data-id="925339379751329852">
+        <img src="https://lanyard.cnrad.dev/api/925339379751329852?bg=0b0b0b&borderRadius=15px&animated=true">
     </a>
 
-    <!-- Leo -->
-    <a href="https://discord.com/users/1327983625144238092" target="_blank" class="discord-card">
-        <img src="https://lanyard.cnrad.dev/api/1327983625144238092?bg=0b0b0b&borderRadius=15px&animated=true" alt="Leo Discord Profile">
-        <p>Leo</p>
+    <a href="https://discord.com/users/1327983625144238092" target="_blank" class="discord-card" data-id="1327983625144238092">
+        <img src="https://lanyard.cnrad.dev/api/1327983625144238092?bg=0b0b0b&borderRadius=15px&animated=true">
     </a>
 
-    <!-- Pepe -->
-    <a href="https://discord.com/users/1137672913198260234" target="_blank" class="discord-card">
-        <img src="https://lanyard.cnrad.dev/api/1137672913198260234?bg=0b0b0b&borderRadius=15px&animated=true" alt="Pepe Discord Profile">
-        <p>Pepe</p>
+    <a href="https://discord.com/users/1137672913198260234" target="_blank" class="discord-card" data-id="1137672913198260234">
+        <img src="https://lanyard.cnrad.dev/api/1137672913198260234?bg=0b0b0b&borderRadius=15px&animated=true">
     </a>
 
-    <!-- Koko -->
-    <a href="https://discord.com/users/1114657059913343117" target="_blank" class="discord-card">
-        <img src="https://lanyard.cnrad.dev/api/1114657059913343117?bg=0b0b0b&borderRadius=15px&animated=true" alt="Koko Discord Profile">
-        <p>Koko</p>
+    <a href="https://discord.com/users/1114657059913343117" target="_blank" class="discord-card" data-id="1114657059913343117">
+        <img src="https://lanyard.cnrad.dev/api/1114657059913343117?bg=0b0b0b&borderRadius=15px&animated=true">
     </a>
 </div>
-
-<p style="margin-top:5px;">
-We do <strong>a lot of cool stuff, giveaways, anime related, keeping it fun</strong> ❤️
-</p>
 
 <a class="join-btn" href="https://discord.gg/ptMZ2udMqG" target="_blank">
 Join the Discord 🚀
@@ -235,5 +226,24 @@ Follow on TikTok 🎵
 
 </div>
 </div>
+
+<script>
+const cards = document.querySelectorAll('.discord-card');
+
+cards.forEach(card => {
+    const userId = card.dataset.id;
+
+    fetch(`https://api.lanyard.rest/v1/users/${userId}`)
+        .then(res => res.json())
+        .then(data => {
+            const status = data.data.discord_status;
+            if (status !== "offline") {
+                card.classList.add("online");
+            }
+        })
+        .catch(() => {});
+});
+</script>
+
 </body>
 </html>
