@@ -1,215 +1,311 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>True Elites</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>Prodiags Course Viewer</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Orbitron&family=Poppins:wght@300;500&display=swap');
 
-* { box-sizing: border-box; }
-
-body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    color: #eaeaea;
-    background: #0b0b0b;
+body{
+font-family:Arial,Helvetica,sans-serif;
+margin:0;
+background:#f3f4f6;
 }
 
-.overlay {
-    background: rgba(0,0,0,0.6);
-    min-height: 100vh;
-    padding: 50px 20px;
+header{
+background:#1f2937;
+color:white;
+padding:15px 25px;
+display:flex;
+align-items:center;
+justify-content:space-between;
 }
 
-.container {
-    max-width: 900px;
-    margin: auto;
-    text-align: center;
+header h1{
+font-size:18px;
+margin:0;
 }
 
-h1 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 3rem;
-    color: #ff2e2e;
-    text-shadow: 0 0 25px rgba(255,0,0,0.6);
+nav{
+background:#111827;
+color:white;
+padding:10px 25px;
 }
 
-.tagline {
-    margin-bottom: 40px;
-    opacity: 0.85;
+nav a{
+color:white;
+margin-right:15px;
+text-decoration:none;
+font-weight:bold;
 }
 
-.server-box {
-    background: rgba(255,255,255,0.06);
-    border-radius: 15px;
-    padding: 30px;
-    box-shadow: 0 0 30px rgba(255,0,0,0.25);
+.container{
+display:flex;
+height:calc(100vh - 90px);
 }
 
-.server-text {
-    white-space: pre-line;
-    font-family: monospace;
+.sidebar{
+width:260px;
+background:#fff;
+border-right:1px solid #ddd;
+padding:15px;
+overflow:auto;
 }
 
-/* ===== Discord Cards ===== */
-.staff-cards {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 25px;
-    margin-top: 40px;
+.sidebar h3{
+margin-top:0;
 }
 
-.discord-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-decoration: none;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeIn 0.8s ease forwards;
+.sidebar button{
+width:100%;
+margin-bottom:10px;
+padding:10px;
+border:none;
+background:#2563eb;
+color:white;
+border-radius:6px;
+cursor:pointer;
 }
 
-.discord-card img {
-    max-width: 320px;
-    width: 100%;
-    border-radius: 15px;
-    transition: box-shadow 0.3s, transform 0.3s;
+.sidebar button:hover{
+background:#1d4ed8;
 }
 
-.discord-card span {
-    margin-top: 8px;
-    color: #ff4b4b;
-    font-weight: bold;
+.main{
+flex:1;
+background:white;
 }
 
-/* Status glows */
-.discord-card.online img {
-    box-shadow: 0 0 30px rgba(0,255,0,0.7);
+iframe{
+width:100%;
+height:100%;
+border:none;
 }
 
-.discord-card.idle img {
-    box-shadow: 0 0 30px rgba(255,200,0,0.7);
+#progress{
+font-size:13px;
+margin-top:10px;
+color:#555;
 }
 
-.discord-card.dnd img {
-    box-shadow: 0 0 30px rgba(255,0,0,0.8);
+.result{
+border:1px solid #ddd;
+border-radius:8px;
+padding:10px;
+margin-bottom:10px;
+background:#fafafa;
 }
 
-/* Fade in */
-@keyframes fadeIn {
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.join-btn {
-    display: inline-block;
-    margin-top: 40px;
-    padding: 15px 45px;
-    border-radius: 30px;
-    text-decoration: none;
-    color: white;
-    font-size: 1.1rem;
-    background: linear-gradient(135deg, #ff0000, #ff4b4b);
-    box-shadow: 0 0 20px rgba(255,0,0,0.6);
-    transition: transform 0.2s;
-}
-
-.join-btn:hover {
-    transform: scale(1.08);
-}
-
-footer {
-    margin-top: 60px;
-    opacity: 0.6;
-    font-size: 0.85rem;
-}
 </style>
+
 </head>
 
 <body>
-<div class="overlay">
+
+<header>
+
+<h1>Prodiags LMS Viewer</h1>
+
+<div>
+Course: Ilmastointi ja lämmönhallinta
+</div>
+
+</header>
+
+<nav>
+
+<a href="#" onclick="loadCourse()">Course</a>
+<a href="#" onclick="loadResults()">Results</a>
+
+</nav>
+
 <div class="container">
 
-<h1>༺𓆩 メ Elites ༒︎</h1>
-<p class="tagline">Semi-toxic • Anime • Active • Giveaways • Cool Stuff</p>
+<div class="sidebar">
 
-<div class="server-box">
-<div class="server-text">
-╰› active ⟡ new ⛩ add pfps × banners
-𑣲 ╰›▬▬ι═ not strict═══ﺤ ノ メ anime
->⩊< ⌞We’ll see what our server turns into..】
-</div>
-</div>
+<h3>Tools</h3>
 
-<div class="staff-cards">
-    <a href="https://discord.com/users/925339379751329852" target="_blank"
-       class="discord-card" data-id="925339379751329852">
-        <img src="https://lanyard.cnrad.dev/api/925339379751329852?bg=0b0b0b&borderRadius=15px&animated=true">
-        <span>Strax</span>
-    </a>
+<button onclick="loadCourse()">Open Course</button>
+<button onclick="loadResults()">Load Results</button>
+<button onclick="exportJSON()">Export JSON</button>
 
-    <a href="https://discord.com/users/1327983625144238092" target="_blank"
-       class="discord-card" data-id="1327983625144238092">
-        <img src="https://lanyard.cnrad.dev/api/1327983625144238092?bg=0b0b0b&borderRadius=15px&animated=true">
-        <span>Leo</span>
-    </a>
+<div id="progress">Idle</div>
 
-    <a href="https://discord.com/users/1137672913198260234" target="_blank"
-       class="discord-card" data-id="1137672913198260234">
-        <img src="https://lanyard.cnrad.dev/api/1137672913198260234?bg=0b0b0b&borderRadius=15px&animated=true">
-        <span>Pepe</span>
-    </a>
-
-    <a href="https://discord.com/users/1114657059913343117" target="_blank"
-       class="discord-card" data-id="1114657059913343117">
-        <img src="https://lanyard.cnrad.dev/api/1114657059913343117?bg=0b0b0b&borderRadius=15px&animated=true">
-        <span>Koko</span>
-    </a>
-</div>
-<p style="margin-top:40px;">
-<strong>We do a lot of cool stuff, giveaways, anime related, keeping it fun and not strict❤️<strong>
-</p>
-
-<a class="join-btn" href="https://discord.gg/ptMZ2udMqG" target="_blank">
-Join the Discord 🚀
-</a>
-<br><br>
-
-<a class="join-btn" href="https://www.tiktok.com/@strax_yy" target="_blank">
-Follow on TikTok 🎵
-</a>
-<footer>
-© TrueElites.com
-</footer>
+<div id="results"></div>
 
 </div>
+
+<div class="main">
+
+<iframe id="viewer"></iframe>
+
 </div>
+
+</div>
+
 
 <script>
-const REFRESH_INTERVAL = 30000;
 
-function updateStaffStatus() {
-    document.querySelectorAll('.discord-card').forEach(card => {
-        const id = card.dataset.id;
+/* ============================
+CONFIG
+============================ */
 
-        fetch(`https://api.lanyard.rest/v1/users/${id}`)
-            .then(res => res.json())
-            .then(res => {
-                card.classList.remove('online','idle','dnd');
-                const status = res.data?.discord_status;
-                if (status === 'online') card.classList.add('online');
-                if (status === 'idle') card.classList.add('idle');
-                if (status === 'dnd') card.classList.add('dnd');
-            });
-    });
+const COURSE_URL =
+"https://lms.prodiags.eu/index.php?module=courses&course_id=593466995";
+
+const RESULTS_URL =
+"https://lms.prodiags.eu/index.php?module=results&part=tab";
+
+
+let collectedResults=[];
+
+
+/* ============================
+COURSE VIEW
+============================ */
+
+function loadCourse(){
+
+document.getElementById("viewer").src=COURSE_URL;
+
 }
 
-updateStaffStatus();
-setInterval(updateStaffStatus, REFRESH_INTERVAL);
+
+/* ============================
+RESULTS LOADER
+============================ */
+
+async function fetchHTML(url){
+
+const res=await fetch(url,{credentials:"include"});
+return await res.text();
+
+}
+
+function parseHTML(html){
+
+return new DOMParser().parseFromString(html,"text/html");
+
+}
+
+
+async function getResultLinks(){
+
+const progress=document.getElementById("progress");
+
+progress.innerText="Scanning results page...";
+
+const html=await fetchHTML(RESULTS_URL);
+
+const doc=parseHTML(html);
+
+const links=doc.querySelectorAll('a[href*="part=det&id="]');
+
+let resultLinks=[];
+
+links.forEach(a=>{
+
+const url=new URL(a.href).href;
+
+if(!resultLinks.includes(url))
+resultLinks.push(url);
+
+});
+
+return resultLinks;
+
+}
+
+
+async function loadResults(){
+
+const progress=document.getElementById("progress");
+
+progress.innerText="Collecting results...";
+
+const links=await getResultLinks();
+
+progress.innerText="Found "+links.length+" results";
+
+let done=0;
+
+const results=await Promise.all(
+
+links.map(async url=>{
+
+const html=await fetchHTML(url);
+
+done++;
+
+progress.innerText="Loading "+done+" / "+links.length;
+
+return{
+url:url,
+html:html
+};
+
+})
+
+);
+
+collectedResults=results;
+
+renderResults();
+
+progress.innerText="Finished";
+
+}
+
+
+function renderResults(){
+
+const container=document.getElementById("results");
+
+container.innerHTML="";
+
+collectedResults.forEach(r=>{
+
+const div=document.createElement("div");
+
+div.className="result";
+
+div.innerHTML=
+
+`
+<b>Result</b><br>
+<a href="${r.url}" target="_blank">${r.url}</a>
+`;
+
+container.appendChild(div);
+
+});
+
+}
+
+
+/* ============================
+EXPORT
+============================ */
+
+function exportJSON(){
+
+const data=
+"data:text/json;charset=utf-8,"+
+encodeURIComponent(JSON.stringify(collectedResults,null,2));
+
+const a=document.createElement("a");
+
+a.href=data;
+a.download="results.json";
+
+a.click();
+
+}
+
 </script>
 
 </body>
 </html>
-
-
